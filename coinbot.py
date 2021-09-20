@@ -33,18 +33,18 @@ async def on_message(message):
 
     if message.content.startswith('$ADA'):
         price = get_crypto_price('ADA')
-        await message.channel.send(f'{price}')
+        await message.channel.send(f'The price of ADA is ${price} USD')
 
     if message.content.startswith('$BTC'):
         price = get_crypto_price('BTC')
-        await message.channel.send(f'{price}')
+        await message.channel.send(f'The price of BTC is ${price} USD')
     
     if message.content.startswith('$ETH'):
         price = get_crypto_price('ETH')
-        await message.channel.send(f'{price}')
+        await message.channel.send(f'The price of ETH is ${price} USD')
 
     if message.content.startswith('$DOGE'):
         price = get_crypto_price('DOGE')
-        await message.channel.send(f'{price}')
+        await message.channel.send(f'The price of DOGE is ${price} USD')
 
 client.run(token)
