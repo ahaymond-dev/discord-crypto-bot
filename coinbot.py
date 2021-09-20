@@ -15,9 +15,9 @@ def get_crypto_price(symbol):
     raw = requests.get(url).json()
     response = []
     response.append(raw['rates'])
-    price = response[0][f'{symbol}']
+    prices = response[0][f'{symbol}']
 
-    return price
+    return prices
 
 @client.event
 async def on_ready():
@@ -32,19 +32,19 @@ async def on_message(message):
         await message.channel.send('this bot is working!')
 
     if message.content.startswith('$ADA'):
-        get_crypto_price('ADA')
+        price = get_crypto_price('ADA')
         await message.channel.send(f'{price}')
 
     if message.content.startswith('$BTC'):
-        get_crypto_price('BTC')
+        price = get_crypto_price('BTC')
         await message.channel.send(f'{price}')
     
     if message.content.startswith('$ETH'):
-        get_crypto_price('ETH')
+        price = get_crypto_price('ETH')
         await message.channel.send(f'{price}')
 
     if message.content.startswith('$DOGE'):
-        get_crypto_price('DOGE')
+        price = get_crypto_price('DOGE')
         await message.channel.send(f'{price}')
 
 client.run(token)
