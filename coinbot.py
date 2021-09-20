@@ -28,22 +28,22 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$test'):
+    if message.content.upper().startswith('$TEST'):
         await message.channel.send('this bot is working!')
 
-    if message.content.startswith('$ADA'):
+    if message.content.upper().startswith('$ADA'):
         price = get_crypto_price('ADA')
         await message.channel.send(f'The current price of ADA is ${price} USD')
 
-    if message.content.startswith('$BTC'):
+    if message.content.upper().startswith('$BTC'):
         price = get_crypto_price('BTC')
         await message.channel.send(f'The current price of BTC is ${price} USD')
     
-    if message.content.startswith('$ETH'):
+    if message.content.upper().startswith('$ETH'):
         price = get_crypto_price('ETH')
         await message.channel.send(f'The current price of ETH is ${price} USD')
 
-    if message.content.startswith('$DOGE'):
+    if message.content.upper().startswith('$DOGE'):
         price = get_crypto_price('DOGE')
         await message.channel.send(f'The current price of DOGE is ${price} USD')
 
