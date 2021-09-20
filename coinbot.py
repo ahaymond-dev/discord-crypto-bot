@@ -10,6 +10,15 @@ api_url = 'http://api.coinlayer.com/api/live'
 api_key = os.getenv('COINLAYER_KEY')
 token = os.getenv('BOT_TOKEN')
 
+def get_crypto_price(symbol):
+    url = f'{api_url}&symbols={symbol}?access_key={api_key}'
+    raw = requests.get(url).json()
+    response = []
+    response.append(raw['rates'])
+    price = response[0][f'{symbol}']
+
+    return price
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -22,12 +31,20 @@ async def on_message(message):
     if message.content.startswith('$test'):
         await message.channel.send('this bot is working!')
 
-    if message.content.startswith('$ada'):
-        url = f'{api_url}&symbols=ADA?access_key={api_key}'
-        raw = requests.get(url).json()
-        response = []
-        response.append(raw['rates'])
-        price = response[0]
+    if message.content.startswith('$ADA'):
+        get_crypto_price('ADA')
+        await message.channel.send(f'{price}')
+
+    if message.content.startswith('$BTC'):
+        get_crypto_price('BTC')
+        await message.channel.send(f'{price}')
+    
+    if message.content.startswith('$ETH'):
+        get_crypto_price('ETH')
+        await message.channel.send(f'{price}')
+
+    if message.content.startswith('$DOGE'):
+        get_crypto_price('DOGE')
         await message.channel.send(f'{price}')
 
 client.run(token)
