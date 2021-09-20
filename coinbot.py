@@ -1,4 +1,12 @@
 import discord
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = discord.Client()
+
+token = os.getenv('BOT_TOKEN')
 
 @client.event
 async def on_ready():
@@ -9,7 +17,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content('$hello'):
-        await message.channel.send('Hello!')
+    if message.content.startswith('$test'):
+        await message.channel.send('this bot is working!')
 
-client.run('ODc4NjcwNTczNzEzMTI1NDM3.YSEjvQ.As8J_HTLPSPyzYreEhRIo7ax5xM')
+client.run(token)
